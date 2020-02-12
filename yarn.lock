@@ -43,6 +43,11 @@ co@^4.6.0:
   resolved "https://registry.npm.taobao.org/co/download/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
   integrity sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
 
+colors-console@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/colors-console/download/colors-console-1.0.3.tgz#5e7a20b26e8ef2d2540768c8c9250c3f545b598b"
+  integrity sha1-Xnogsm6O8tJUB2jIySUMP1RbWYs=
+
 content-disposition@~0.5.2:
   version "0.5.3"
   resolved "https://registry.npm.taobao.org/content-disposition/download/content-disposition-0.5.3.tgz#e130caf7e7279087c5616c2007d0485698984fbd"
