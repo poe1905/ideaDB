@@ -1,5 +1,5 @@
 const Koa = require('koa');
-const bodyParser = require('koa-bodyparser');
+// const bodyParser = require('koa-bodyparser');
 // 注意require('koa-router')返回的是函数:
 const router = require('koa-router')();
 
@@ -14,7 +14,7 @@ app.use(bodyParser());
 
 // add url-route:
 router.get('/hello/:name/ab', async (ctx, next) => {
-  console.log(ctx.query);
+ 
     var name = ctx.params.name;
     ctx.response.body = `<h1>Hello, ${name}!</h1> `;
 });

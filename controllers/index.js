@@ -1,8 +1,10 @@
 var fn_index = async (ctx, next) => {
+  console.log(ctx);
   ctx.response.body = `<h1>Index</h1>
       <form action="/signin" method="post">
           <p>用户名: <input name="name" value="koa"></p>
           <p>密码: <input name="password" type="password"></p>
+          <span>12345</span>
           <p><input type="submit" value="登陆"></p>
       </form>`;
 }
