@@ -11,9 +11,7 @@ app.use(async (ctx, next) => {
     // console.log(`\x1B[2m\x1B[44m ${ctx.request.method} \x1B[0m ${ctx.request.url} ...`);
     if (ctx.request.method =='GET'){
         console.log(`\x1B[2m\x1B[44m ${ctx.request.method} \x1B[0m ${ctx.request.url} ...`);
-        
     }else {
-        
         console.log(`\x1B[2m\x1B[42m ${ctx.request.method} \x1B[0m ${ctx.request.url} ...`);
     }
 
