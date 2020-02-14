@@ -1,5 +1,8 @@
 const fs = require('fs')
+
+//处理文件请求
 function addMapping (router, mapping) {
+  //遍历数组对象 /将每一个对象按照格式分别注册到router上面
   for (var url in mapping) {
     if (url.startsWith('GET ')) {
       // 如果url类似"GET xxx":
@@ -11,7 +14,7 @@ function addMapping (router, mapping) {
       router.post(path, mapping[url])
     } else {
       // 无效的URL:
-      console.log(`invalid URL: ${url}`)
+      console.log(`controllers文件夹中,导出对象路径错误: ${url}`)
     }
   }
 }
@@ -26,6 +29,7 @@ function addControllers (router ,controllers_dir) {
   for (var f of js_files) {
     // 导入js文件:
     let mapping = require(__dirname + `/${controllers_dir}/` + f)
+    //处理文件请求
     addMapping(router, mapping)
   }
 }

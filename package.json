@@ -6,8 +6,10 @@
   "dependencies": {
     "colors-console": "^1.0.3",
     "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
     "koa-bodyparser": "^4.2.1",
-    "koa-router": "^8.0.7"
+    "koa-router": "^8.0.7",
+    "koa-static": "^5.0.0"
   },
   "scripts": {
     "div": "nodemon app.js",

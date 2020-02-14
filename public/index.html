@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <!-- <link rel="stylesheet" href="./index.css"> -->
+	<style type="text/css">
+		* {
+		    margin: 0;
+		    padding: 0;
+		}
+		.w {
+		    width: 1400px;
+		    margin: 0 auto;
+		
+		}
+		li {
+		    text-decoration: none;
+		    list-style: none;
+		}
+		a {
+		    color: #333;
+		    text-decoration: none;
+		}
+		a:hover {
+		    color: sandybrown;
+		    text-decoration: currentColor;
+		
+		}
+		body{
+		    font-size: 14px;
+		}
+		.district ,.login{
+		    height: 50px;
+		    line-height: 50px;
+		}
+		header{
+		    background-color: #f2f2f2; 
+		    width: 100%;
+		    color: #9e9e9e;
+		}
+		.top_w {
+		    justify-content: space-between;
+		    display: flex;
+		    width: 1400px;
+		    margin:  0 auto;
+		    background-color: #f2f2f2;
+		
+		}
+		.login{
+		    color: #153e66;
+		    /* float: 700 '微软雅黑' 14px; */
+		    font-weight: 700;
+		}
+		.login span , .district span { 
+		    margin: 10px;
+		}
+		.top_h {
+		    background-color: #fff;
+		}
+		.color {
+		    background-color: #fff;
+		}
+		.top_h .w{ 
+		    display: flex;
+		    justify-content: space-between;
+		}
+		.logo{
+		    margin: 30px 0 ;
+		    display: flex;
+		    align-items: center;
+		}
+		.logo span{
+		    font-size: 30px;
+		    font-weight: 700;
+		    color: rgba(37, 69, 99, 1);
+		    margin-left: 20px;
+		}
+		.top_r{
+		    display: flex; 
+		    margin: 50px 14px;
+		
+		}
+		.search input{
+		    outline: none;
+		    height: 40px;
+		    width: 330px;
+		    border-radius: 40px;
+		    border: solid 1px #ccc;
+		    line-height: 40px;
+		    color: #c7c7c7;
+		    margin-right: 20px;
+		    padding-left: 20px ;
+		}
+		.button{
+		    position: relative;
+		}
+		.button span {
+		    display: inline-block;
+		
+		    width: 130px;
+		    height: 40px;
+		    border-radius: 40px;
+		    background-color: #f2f2f2;
+		    text-align: center;
+		    line-height: 40px;
+		    margin-right: 15px;
+		
+		}
+		.button i{
+		/*     
+		    background-color: #ffaa2a;
+		    display: inline-block;
+		    font-style: normal;
+		    position: absolute;
+		    right: 25px;
+		    top: 10px;
+		    padding: 3px;
+		    color: #fff;
+		    border-radius: 15px; */
+		    font-style: normal;
+		    /* display: block; */
+		    display: inline-block;
+		    width: 25px;
+		    height: 20px;
+		    border-radius: 10px;
+		    text-align: center;
+		    background-color: #ffaa2a;
+		    position: absolute;
+		    right: 25px;
+		    font-size: 12px;
+		    line-height: 20px;
+		    top: 10px;
+		    color: #fff;
+		
+		}
+		.banner img{
+		    margin:  0 auto;
+		}
+		nav ul{ 
+		    background-color: #fff;
+		    display: flex;
+		    justify-content: space-around;
+		    padding: 12px 0 ;
+		}
+		nav ul li {
+		    font-size: 18px;
+		    font-style: '微软雅黑';
+		    font-weight: 700;
+		    color: #333;
+		    padding: 13px  0 ;   
+		} 
+		nav ul li:hover {
+		
+		    border-bottom: 2px solid #264360;
+		    color:#264360 ;
+		}
+		.pitch{
+		    border-bottom: 2px solid transparent ;
+		    color:#264360 ;
+		}
+		.demonstrate{
+		    background-color: #f2f2f2;
+		}
+		.demonstrate .w{
+		width: 1400px;
+		margin:  0 auto ;
+		    display: flex;
+		    justify-content: space-around;
+		    padding: 60px 0;
+		}
+		 
+		.dynamic{
+		    display: flex;
+		}
+		.dynamic img {
+		    
+		    vertical-align: top;
+		}
+		.dynamic .top_zb{
+		    flex: 1;
+		    padding-right: 30px;
+		}
+		.fexl{
+		    display: flex;
+		}
+		.he_right{
+		    background-color:#f8f8f8;
+		    padding: 30px;
+		    width: 100%;
+		}
+		.he_zb{
+		    display: flex;
+		    justify-content: space-between;
+		    margin: 30px 0 ;
+		}
+		.top_zb h3 {
+		    color: #4f6e8c;
+		    margin-left: 10px;
+		    font-size: 22px;
+		
+		}
+		.he_zb span {
+		    font-weight: 700;
+		    font-size: 16px;
+		    color: #4f6e8c;
+		}
+		.he_right li {
+		    margin: 10px 0 ;
+		}
+		.dynamic .top_tj{
+		    width: 300px;
+		 
+		}
+		.top_tj{
+		
+		}
+		.top_tj li {
+		    display: flex;
+		    font-size: 12px;
+		}
+		.top_tj li  p {
+		    padding: 10px;
+		}
+		
+		/* 战保周迅 */
+		.top_zx_list {
+		    display: flex;
+		}
+		 
+	</style>
+</head>
+
+<body>
+    <!-- 头部信息 -->
+    <header class="top ">
+        <div class=" top_w">
+            <div class="district">
+                <span>北京</span><span>10°C/7°C</span>
+            </div>
+            <div class="login">
+                <span>登陆</span><span>注册</span>
+            </div>
+        </div>
+        <div class=" top_h">
+            <div class="w ">
+                <div class="logo">
+                    <img src="./images/logo.png" alt="图片">
+                    <span><a href="#">战场环境保障在线服务中心</a></span>
+                </div>
+                <div class="top_r">
+                    <div class="search">
+                        <input type="text" value="请输入文字">
+                    </div>
+                    <div class="button">
+                        <span>成果车</span><i>0</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 首页 tab栏 -->
+        <nav class=" color">
+            <ul class="w">
+                <li class="pitch"><a href="#">首页</a></li>
+                <li><a href="#">战报动态</a></li>
+                <li><a href="#">战报业务</a></li>
+                <li><a href="#">战报服务</a></li>
+                <li><a href="#">战报应用</a></li>
+                <li><a href="#">工具软件</a></li>
+                <li><a href="#">军兵种保障</a></li>
+                <li><a href="#">政策法规</a></li>
+                <li><a href="#">政策法规</a></li>
+                <li><a href="#">知识服务</a></li>
+                <li><a href="#">战保论坛</a></li>
+            </ul>
+        </nav>
+
+    </header>
+    <div class="banner">
+        <img src="./images/banner-01.png" alt="11">
+    </div>
+    <!-- 中间信息图预览 -->
+    <div class="demonstrate ">
+
+        <div class="w ">
+
+            <img src="./images/demonstrate-01.png" alt="">
+
+
+            <img src="./images/demonstrate-02.png" alt="">
+
+            <img src="./images/demonstrate-03.png" alt="">
+
+            <img src="./images/demonstrate-04.png" alt="">
+
+        </div>
+
+    </div>
+    <!-- 战保动态信息 -->
+    <div class="dynamic w">
+        <div class="top_zb">
+            <h3>战保动态</h3>
+            <hr>
+            <div class="he_zb">
+                <span>战保新闻</span>
+                <span>更多</span>
+            </div>
+            <div class="fexl">
+                <div class="he_left">
+                    <img src="./images/left.png" alt="">
+
+                </div>
+                <div class="he_right">
+                    <ul>
+                        <li>冬奥运某某某冬奥运某某某冬奥运某某某</li>
+                        <li>冬奥运某某某冬奥运某某某冬奥运某某某</li>
+                        <li>冬奥运某某某冬奥运某某某冬奥运某某某</li>
+                        <li>冬奥运某某某冬奥运某某某冬奥运某某某</li>
+                        <li>冬奥运某某某冬奥运某某某冬奥运某某某</li>
+                        <li>冬奥运某某某冬奥运某某某冬奥运某某某</li>
+                        <li>冬奥运某某某冬奥运某某某冬奥运某某某</li>
+                        <li>冬奥运某某某冬奥运某某某冬奥运某某某</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="top_tj left">
+            <h3>战保动态</h3>
+            <hr>
+            <div class="he_zb">
+                <span>头条咨询</span>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <img src="./images/list-01.png" alt="">
+                        <p>首艘国产航母入水首艘国产航母入水首艘国产航母入水</p>
+                    </li>
+                    <li>
+                        <img src="./images/list-01.png" alt="">
+                        <p>首艘国产航母入水首艘国产航母入水首艘国产航母入水</p>
+                    </li>
+                    <li>
+                        <img src="./images/list-01.png" alt="">
+                        <p>首艘国产航母入水首艘国产航母入水首艘国产航母入水</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- 战保周迅 -->
+    <div class="top_zx ">
+        <span>战保周迅</span>
+        <ul class="top_zx_list ">
+            <li>第50期</li>
+            <li>第50期</li>
+            <li>第50期</li>
+            <li>第50期</li>
+            <li>第50期</li>
+            <li>第50期</li>
+            <li>第50期</li>
+        </ul>
+    </div>
+</body>
+
+</html>
