@@ -9,7 +9,11 @@
     "koa-body": "^4.1.1",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^8.0.7",
-    "koa-static": "^5.0.0"
+    "koa-static": "^5.0.0",
+    "mysql": "^2.18.1",
+    "mysql-ithm": "^2.2.2",
+    "qiniu": "^7.3.0",
+    "qiniu-js": "^2.5.5"
   },
   "scripts": {
     "div": "nodemon app.js",

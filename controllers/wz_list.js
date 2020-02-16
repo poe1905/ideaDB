@@ -1,69 +1,66 @@
-var fs = require('fs');
-
-// 获取文章类型
-var fn_gettype = async (ctx, next) => {
-  const type = require(`../BD/type.json`)
-  ctx.response.body = type;
-}
-// 添加文章类型
-var fn_settype = async (ctx, next) => {
-  var body = ctx.request.body;//获取类型名称
-  const path = __dirname + `/../BD/type.json` //写数据的路径
-  const type = require(`../BD/type.json`)
-  type.length
-  type.push({ [type.length]: body.name })
-  const jsonstr = JSON.stringify(type)
-
-  // 写入路径
-  fs.writeFile(path, jsonstr, function (err) {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log('----------修改成功-------------');
-    } 
-  })
-  ctx.response.body = type;
-}
+var { list } = require('../utils/sqlconfig');
 
 
 //处理文章添加
 var fn_addlist = async (ctx, next) => {
-  var body = ctx.request.body;
-  const path = __dirname + `/../BD/list.json`
-  var list = require('../BD/list.json')
+  var {data} = ctx.request.body;
+  data.item = Date.now()+''
+  data.id = Number(Math.random().toString().substr(3,5) + Date.now()).toString(36)
+  data.content = data.content.replace(/\"/g,"'")
+  // data --
+  //  title: '爱拉夫一批批',
+  // type: '0',
+  // secret: false,
+  // content: '<p>haoduyoudu</p>',
+  // item: '1581835048108',
+  // id: '38ffiz0rufg0'
 
+  const sql = `INSERT INTO list (title,type,secret,content,item,id) VALUES ("${data.title}","${data.type}","${data.secret}","${data.content}","${data.item}","${data.id}")`
+  console.log(sql);
+  function asyncRes () {
+    return new Promise((resolve, reject) => {
+      //"${data.username}"  查询字符串的时候要将变量使用字符串的形式传入条件
+      list.sql(sql,(err,results)=>{
+        console.log(err);
+        console.log(results);
+        if(!err) console.log('增加成功');
+        resolve(results )
+    });
+    })
+  }
+    await asyncRes()
 
-  body.data.item = Date.now()
-  body.data.id = (Date.now() * Math.random() + '').replace(/\./g, '')
-
-
-  //将修改后的内容写入文件
-  list.push(body.data)
-  const jsonstr = JSON.stringify(list)
-
-  fs.writeFile(path, jsonstr, function (err) {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log('----------修改成功-------------');
-    }
-  })
   ctx.response.body = {
     code:200,
-    msg:'ok',
+    msg:'ok'
   };
 }
 //获取文章列表
 var fn_getlist = async (ctx, next) => {
-  const type = require(`../BD/list.json`)
+  // var body = ctx.request.body;//获取类型名称
+  // body.startTime = Date.now()
+  // body.id = Number(Math.random().toString().substr(3,5) + Date.now()).toString(36)
+  function asyncRes () {
+    return new Promise((resolve, reject) => {
+      list.find((err,results)=>{
+        // console.log(err);
+        // console.log(results);
+        resolve(results )
+    });
+    })
+  }
+   const body =  await asyncRes() 
 
-  ctx.response.body = type;
+
+  ctx.response.body = {
+    code:200,
+    msg: 'ok',
+    data:body
+  };
 }
 
 
 module.exports = {
-  'GET /type': fn_gettype,
-  'POST /settype': fn_settype,
   'GET /getlist': fn_getlist,
   'POST /addlist': fn_addlist
 };

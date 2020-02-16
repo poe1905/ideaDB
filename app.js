@@ -7,8 +7,12 @@ const path = require('path')
 // const bodyParser = require('koa-bodyparser'); //处理pust请求
 const koaBody = require('koa-body');//处理文件上传
 const app = new Koa();
-// app.use(bodyParser());
-
+require('./utils/sqlconfig');//引入配置信息
+// studentModel.insert({id:'001',name:'张三10',completion:30},(err,results)=>{
+//   console.log(err);
+//   console.log(results);
+//   if(!err) console.log('增加成功');
+// });
 
 //静态资源托管
 const home   = serve(path.join(__dirname)+'/public/');
