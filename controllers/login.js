@@ -1,4 +1,4 @@
-var { user } = require('../utils/sqlconfig');
+var { user,type,list } = require('../utils/sqlconfig');
 var fn_login = async (ctx, next) => {
   var body = ctx.request.body; //取出表单中的 用户名 
   //包装 读取数据库请求 --不然koa 无法返回相应数据
@@ -22,6 +22,7 @@ var fn_login = async (ctx, next) => {
     ctx.response.body = {
       code: 200,
       msg: 'ok',
+      data: userinfo  ,
       token: Date.now()
     };
   } else {
@@ -34,6 +35,56 @@ var fn_login = async (ctx, next) => {
 
 }
 
+//获取登陆信息
+fn_logininfo= async (ctx, next) => { 
+  function asyncRes () {
+    return new Promise((resolve, reject) => {
+      type.find((err,results)=>{
+        // console.log(err);
+        // console.log(results);
+        resolve(results)
+    });
+    })
+  }
+  function project () {
+    return new Promise((resolve, reject) => {
+      type.find('completion = 1',(err,results)=>{
+        // console.log(err);
+        // console.log(results);
+        resolve(results)
+    });
+    })
+  }
+  function logd () {
+    
+    const sql = `
+    select name as '项目类型',COUNT(*) as '项目数量' from type left join list
+    on type.id=list.type where name is not null
+    group by name`
+    return new Promise((resolve, reject) => {
+      type.sql(sql,(err,results)=>{
+        // console.log(err);
+        // console.log(results);
+        resolve(results)
+    });
+    })
+  }
+   const types =  await asyncRes() //总共的项目
+   const completion =  await project() //总共的项目
+   const hahah =  await logd() //总共的项目
+console.log(hahah);
+
+  ctx.response.body = {
+    code:200,
+    msg: 'ok',
+    data:{
+      types :types.length,
+      completion :completion.length
+    }
+  };
+}
+
 module.exports = {
-  "POST /login": fn_login
+  "POST /login": fn_login,
+  "GET /logininfo": fn_logininfo
 };
