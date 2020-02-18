@@ -7,16 +7,7 @@ const config = {
   database: 'nian'//数据库名称
 }
 mysql.connect(config);
-// app.use(bodyParser());
-// connection.on('error', function (err) {
-//   logger.error('db error', err);
-//   if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-//     logger.error('db error执行重连:' + err.message);
-//     handleDisconnection();
-//   } else {
-//     throw err;
-//   }
-// });
+
 process.on('uncaughtException', (error) => {
   // console.log('它出现了一个错误',error);
   if(error.code =='PROTOCOL_CONNECTION_LOST'){

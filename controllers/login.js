@@ -1,4 +1,4 @@
-var { user,type,list } = require('../utils/sqlconfig');
+var { user, type, list } = require('../utils/sqlconfig');
 var fn_login = async (ctx, next) => {
   var body = ctx.request.body; //取出表单中的 用户名 
   //包装 读取数据库请求 --不然koa 无法返回相应数据
@@ -22,7 +22,7 @@ var fn_login = async (ctx, next) => {
     ctx.response.body = {
       code: 200,
       msg: 'ok',
-      data: userinfo  ,
+      data: userinfo,
       token: Date.now()
     };
   } else {
@@ -36,50 +36,74 @@ var fn_login = async (ctx, next) => {
 }
 
 //获取登陆信息
-fn_logininfo= async (ctx, next) => { 
+fn_logininfo = async (ctx, next) => {
+  //获取项目总数
   function asyncRes () {
     return new Promise((resolve, reject) => {
-      type.find((err,results)=>{
+      type.find((err, results) => {
         // console.log(err);
         // console.log(results);
         resolve(results)
-    });
+      });
     })
   }
-  function project () {
+  //查询近期的项目
+  function asynclist () {
+    var weekAgo = Date.now() - 604800000
+    console.log(weekAgo);
     return new Promise((resolve, reject) => {
-      type.find('completion = 1',(err,results)=>{
+      list.find(`item > ${weekAgo}`,(err, results) => {
         // console.log(err);
         // console.log(results);
         resolve(results)
-    });
+      });
+    })
+  }
+  //查询
+  function project () {
+    return new Promise((resolve, reject) => {
+      type.find('completion = 1', (err, results) => {
+        // console.log(err);
+        // console.log(results);
+        resolve(results)
+      });
     })
   }
   function logd () {
-    
+
     const sql = `
-    select name as '项目类型',COUNT(*) as '项目数量' from type left join list
+    select name as 'type',COUNT(*) as 'sum' from type left join list
     on type.id=list.type where name is not null
     group by name`
     return new Promise((resolve, reject) => {
-      type.sql(sql,(err,results)=>{
+      type.sql(sql, (err, results) => {
         // console.log(err);
         // console.log(results);
         resolve(results)
-    });
+      });
     })
   }
-   const types =  await asyncRes() //总共的项目
-   const completion =  await project() //总共的项目
-   const hahah =  await logd() //总共的项目
-console.log(hahah);
+  const types = await asyncRes() //总共的项目
+  const completion = await project() //总共完成的项目
+  const hahah = await logd() //项目总览
+  const sunlist = await asynclist() //项目总览
+  console.log(hahah);
+  var max = { sum: 0 }
+  for (const key in hahah) {
+    const element = hahah[key];
+    if (max.sum < element.sum) {
+      max = element
+    }
+  }
 
   ctx.response.body = {
-    code:200,
+    code: 200,
     msg: 'ok',
-    data:{
-      types :types.length,
-      completion :completion.length
+    data: {
+      types: types.length,
+      completion: completion.length,
+      maxtype: max.sum,
+      sunlist: sunlist.length
     }
   };
 }
