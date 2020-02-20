@@ -81,9 +81,43 @@ var fn_getlist = async (ctx, next) => {
   };
   }
 }
+// 删除文章类型
+var fn_deletelist = async (ctx, next) => {
+  const id = ctx.request.querystring
+  function asyncRes () {
+    return new Promise((resolve, reject) => { 
+        list.delete(`id="${id}"`,(err, results) => resolve(results));
+        
+ 
+    })
+  }
+
+  // // //调用 数据库请求
+  let userinfo = await asyncRes()
+  console.log(`收到影响的数据为${userinfo.affectedRows} `);//收到影响的数据为
+  if (userinfo.affectedRows===1) {
+      ctx.response.body = { 
+    code:200,
+    msg: 'ok',
+    data:  {
+      code: 200,
+      msg: '删除成功'
+    }
+  }
+  } else {
+    ctx.response.body = { 
+      code:200,
+      msg: 'ok',
+      data:  {
+        msg: '删除失败-请查询id是否正确'
+      }
+    }
+  }
+}
 
 
 module.exports = {
   'GET /getlist': fn_getlist,
+  'GET /deletelist': fn_deletelist,
   'POST /addlist': fn_addlist
 };
