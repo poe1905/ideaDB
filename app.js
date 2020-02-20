@@ -16,6 +16,7 @@ require('./utils/sqlconfig');//引入配置信息
 
 //静态资源托管
 const home   = serve(path.join(__dirname)+'/public/');
+app.use(home);
 
 //处理文件上传
 app.use(koaBody({
@@ -25,7 +26,6 @@ app.use(koaBody({
     }
 }));
 
-app.use(home);
 // app.use(router.get("/public",home))
 // // log 请求 URL:
 app.use(async (ctx, next) => {

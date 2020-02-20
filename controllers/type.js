@@ -90,7 +90,6 @@ var fn_altertype = async (ctx, next) => {
   console.log(body ,id);
   function asyncRes () {
     return new Promise((resolve, reject) => {
-      //"${body.username}"  查询字符串的时候要将变量使用字符串的形式传入条件
       type.update(`id ="${id}"`, body,(err,results)=>{
         console.log(err);
         console.log(results);
@@ -103,8 +102,7 @@ var fn_altertype = async (ctx, next) => {
  
   ctx.response.body = {
     code: 200,
-    msg: '增加成功',
-    data:body
+    msg: '修改成功',
   };
 }
 module.exports = {
