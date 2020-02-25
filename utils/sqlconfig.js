@@ -1,10 +1,11 @@
 const mysql = require('mysql-ithm');
 const config = {
-  host: 'localhost',//数据库地址
+  host: 'localhost',
   port: '3306',
-  user: 'root',//用户名，没有可不填
-  password: 'root',//密码，没有可不填
-  database: 'nian'//数据库名称
+  user: 'root',
+  password: 'root',
+  //数据库名称
+  database: 'nian'
 }
 mysql.connect(config);
 

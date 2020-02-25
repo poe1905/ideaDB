@@ -52,12 +52,19 @@ var fn_getlist = async (ctx, next) => {
     return new Promise((resolve, reject) => {
       //判断是否传参  有传参使用参数 查询, 未传参返回所有
       if (type) {
-        list.limit({ where: `type="${type.id}"`, number: +type.page, count: +type.count }, (err, results) => {
-          console.log(err);
-          // console.log(results.length);
-          resolve(results)
-        });
+        let [page,count]= [+type.page , +type.count ]
+        // n(page)指代是需要第几页 m(count) 是每页显示多少个
 
+        /**
+         * 先在list 表中查询 
+         * 按照type的这个条件
+         * 之后按照item列的数据进行降序排列
+         * 然后使用limit 按照 `(n-1)*m ,m` 条件
+         */
+        const sql = `select * from list where type='${type.id}' order by item desc limit ${(page-1)*count},${count}`
+        list.sql(sql,(arr,results)=>{
+          resolve(results)
+        })
       } else {
         list.find((err, results) => resolve(results));
       }
